@@ -20,11 +20,11 @@ class BaseRegisteredIndexClass(metaclass=IndexRegistryBase):
     index_name: str = None
 
     @staticmethod
-    def search(*args, **kwargs):
+    async def search(*args, **kwargs):
         raise NotImplementedError()
 
     @staticmethod
-    def add(*args, **kwargs):
+    async def add(*args, **kwargs):
         raise NotImplementedError()
 
 
@@ -32,11 +32,11 @@ class PhoneIndex(BaseRegisteredIndexClass):
     index_name = 'phone'
 
     @staticmethod
-    def search(data: dict):
+    async def search(data: dict):
         await AnalyticalServices.search_phone_document(data)
 
     @staticmethod
-    def add(data: dict):
+    async def add(data: dict):
         await AnalyticalServices.create_phone_document(data)
 
 
@@ -44,9 +44,9 @@ class FoodIndex(BaseRegisteredIndexClass):
     index_name = 'food'
 
     @staticmethod
-    def search(data: dict):
+    async def search(data: dict):
         await AnalyticalServices.search_food_document(data)
 
     @staticmethod
-    def add(data):
+    async def add(data):
         await AnalyticalServices.create_food_document(data)

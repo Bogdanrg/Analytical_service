@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from core.database import db
 
@@ -24,5 +24,6 @@ class BaseRepository:
 
     @classmethod
     async def get_biggest_count(cls) -> dict:
-        document = await cls.collection.find_one({"count": {"$max": "count"}})
-        return document
+        documents = cls.collection.find({}, {"_id": False}).sort("count", -1).limit(1)
+        document_list = await documents.to_list(1)
+        return document_list[0]

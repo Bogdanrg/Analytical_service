@@ -24,14 +24,12 @@ class AnalyticalServices:
 
     @staticmethod
     async def get_the_most_popular_phone() -> dict:
-        phones = await PhoneRepository.get_all(1, 1)
-        phone = phones[0]
+        phone = await PhoneRepository.get_biggest_count()
         return phone
 
     @staticmethod
     async def get_the_most_popular_food() -> dict:
-        food = await FoodRepository.get_all(1, 1)
-        food = food[0]
+        food = await FoodRepository.get_biggest_count()
         return food
 
     @staticmethod

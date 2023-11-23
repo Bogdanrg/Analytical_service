@@ -12,7 +12,7 @@ class AIOConsumer:
     @staticmethod
     async def consume():
         consumer = AIOKafkaConsumer(
-            settings.kafka.KAFKA_TOPIC_NAME,
+            settings.kafka.TOPIC_NAME,
             bootstrap_servers=[settings.kafka.BOOTSTRAP_SERVER],
             group_id="analyze-group"
         )
