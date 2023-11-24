@@ -11,10 +11,3 @@ class PhoneModel(BaseModel):
     description: str
     count: int
 
-
-class FoodModel(BaseModel):
-    id: str
-    name: str
-    calories: Decimal
-    description: str
-    count: int

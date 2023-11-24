@@ -1,7 +1,7 @@
 from typing import List
 
-from repos.food_repo import FoodRepository
-from repos.phone_repo import PhoneRepository
+from domain.food.repository import FoodRepository
+from domain.phone.repository import PhoneRepository
 
 
 class AnalyticalServices:

@@ -1,7 +1,8 @@
 from typing import List
 
 from fastapi import APIRouter
-from schemas import PhoneModel, FoodModel
+from domain.food.schemas import FoodModel
+from domain.phone.schemas import PhoneModel
 from analytical_service.services import AnalyticalServices
 
 

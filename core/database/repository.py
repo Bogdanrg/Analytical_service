@@ -1,6 +1,6 @@
 from typing import List
 
-from core.database import db
+from core.database.database import db
 
 
 class BaseRepository:
