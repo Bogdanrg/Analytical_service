@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  backend:
+    build: .
+    container_name: "AnalyticalService"
+    entrypoint: ["bash" , "entrypoint.sh" ]
+    ports:
+      - "${APP_BACKEND_PORT}:${APP_UVICORN_PORT}"
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    networks:
+      - data
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    env_file:
+      - .env
+    volumes:
+      - analyze:/data/db
+    ports:
+      - "${MONGODB_MONGO_PORTS}:${MONGODB_MONGO_PORTS}"
+    restart: always
+    networks:
+      - data
+
+  consumer:
+    build: .
+    container_name: 'consumer'
+    entrypoint: [ "bash", "consumer-ep.sh" ]
+    depends_on:
+      - backend
+    networks:
+      - data
+
+volumes:
+  analyze:
+    external: true
+networks:
+  data:
+    external: true
